@@ -9,13 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+<!-- JQuery -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 <title>매일매일 오늘의 뉴스</title>
 </head>
 <body>
-	<div class="highlight"><a href="/subscription"><span>지금 가장 핫한 소식은? > 뉴스레터 구독하기</span></a></div>
+	<div class="highlight"><a class="subscribe" href="#"><span>지금 가장 핫한 소식은? > 뉴스레터 구독하기</span></a></div>
 	<header>
 		<div class="logo">
-			<a href="/index">
+			<a href="/daily-news">
 				<i class="fas fa-solid fa-paper-plane"></i>&nbsp
 				<span>매일매일 오늘의 뉴스</span>
 			</a>
@@ -28,9 +31,14 @@
 			<h1>바쁜 아침, 주요 뉴스 소식을 한 눈에 확인할 수 있도록<br>
 				매일매일 오늘의 뉴스가 보내드릴게요.
 			</h1>
-			<a href="/subscription">무료로 구독하기</a>
+			<!-- TODO : 모달 팝업 띄우기 -->
+			<a class="subscribe" href="#">무료로 구독하기</a>
 		</div>
 		<div class="content2">
+			<div class="content2-1">
+				<!-- TODO : 1000 자리마다 콤마 -->
+				<span th:text="${'벌써 ' + userCount + '명의 사용자가 구독하고 있어요!'}"></span>
+			</div>
 		</div>
 	</div>
 	<footer>
@@ -41,11 +49,40 @@
 		</div>
 			<span class="txt_notice">매일매일 오늘의 뉴스 | 개발자 김연희 | 이메일 mouse97_@naver.com</span><br>
 			<span class="txt_notice">Copyright © 2024, 매일매일 오늘의 뉴스. All rights reserved.</span>
-			<span></span>
 		</div>
 		<div class="footer-2">
-		
+			<!-- TODO : 소개 페이지 넣기 -->
+			<a href="#"><span class="txt_notice">개발자 소개</span></a><br />
+			<a href="#"><span class="txt_notice">서비스 피드백</span></a><br />
+			<a href="https://github.com/yeonhee314/today-dailynews.git"><span class="txt_notice">GitHub</span></a><br />
 		</div>
 	</footer>
+	
+	<!-- 모달 팝업 -->
+	<div id="modalBg" style="display:none;" class="modalBg"></div>
+	<div id="previewModal" style="display: none;">
+		<span id="closeModal">❌</span>
+		<form id="sub-apply" name="sub-apply">
+			<p>매일매일 오늘의 뉴스 구독하기</p>
+			<div class="form-wrap">
+				<div class="name">
+					이름<span class="star"> * </span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp: &nbsp<input type="text" id="userName" name="userName" maxLength="10" required="required" />
+				</div>
+				<!-- TODO : AJAX 이메일 구현 -->
+				<div class="email">
+					이메일<span class="star"> * </span>&nbsp&nbsp&nbsp&nbsp&nbsp : &nbsp<input type="text" id="userMail" name="userMail" required="required" maxLength="30" />
+					<span class="txt_notice" style="display: none">유효하지 않은 이메일입니다.</span>
+				</div>
+				<div class="sub-path">
+					구독 경로<span class="star"> * </span> &nbsp: &nbsp<input type="text" required="required" id="userSubPath" name="userSubPath" maxLength="30" />
+				</div>
+				<div class="check-box">
+					<input type="checkbox" style="display:inline;" required="required"/><span class="txt_notice"> &nbsp(필수) <a href="#">개인정보 수집 및 이용</a>에 동의합니다.</span><br />
+					<input type="checkbox" style="display:inline;" required="required"/><span class="txt_notice"> &nbsp(필수) <a href="#">광고성 정보 수신</a>에 동의합니다.</span>&nbsp
+				</div>
+			</div>
+			<button type="submit" class="sub-btn">등록</button>
+		</form>
+	</div>
 </body>
 </html>
