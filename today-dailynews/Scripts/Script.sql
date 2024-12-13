@@ -17,7 +17,7 @@ CREATE TABLE USERS(
 DROP TABLE USERS;
 
 -- 데이터 삽입
-INSERT INTO users values ('김연희','mouse97_@naver.com', '인터넷 검색')
+INSERT INTO users values (1,'김연희','mouse97_@naver.com', '인터넷 검색')
 
 -- 출력
 SELECT * FROM USERS;
