@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yeonhee.dailynews.dao.UserDAO">
-
-	<!-- 유저 갯수 세기 -->
+	<!-- 총 구독자 수 -->
 	<select id="selectByCount" resultType="int">
 		select count(*) from users
 	</select> 
@@ -11,4 +10,8 @@
 	<insert id="addToUser" parameterType="UserVO">
 		insert into users values(user_id_seq.nextval, #{name}, #{email}, #{sub_path})
 	</insert>
+	<!-- 구독자 리스트 정보 가져오기 -->
+	<select id="selectByUsers" resultType="UserVO">
+		select * from users
+	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.yeonhee.dailynews.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,16 @@ public class UserServiceImpl implements UserService{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<UserVO> selectByUsers() {
+		List<UserVO> users = null;
+		try {
+			users = userDAO.selectByUsers();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
 	}
 }
