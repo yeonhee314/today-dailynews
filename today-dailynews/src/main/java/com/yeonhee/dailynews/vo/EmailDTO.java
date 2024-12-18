@@ -23,15 +23,15 @@ public class EmailDTO {
 	
 	// SendEmailRequest 객체 형태로 맞춰 준다.
 	public SendEmailRequest toSendRequestDto() {
-		// 받는 사람 설정
+		// 받는 사람
 		Destination destination = new Destination().withToAddresses(this.receivers);
-		// 제목, 본문 설정
+		// 제목, 본문
 		Message message = new Message().withSubject(createContent(this.subject))
 						  .withBody(new Body().withHtml(createContent(this.content)));
 		return new SendEmailRequest().withSource(FROM_EMAIL).withDestination(destination).withMessage(message);
 	}
 	
-	// 본문 형식 설정
+	// 본문 형식
 	private Content createContent(String text) {
 		return new Content().withCharset("UTF-8").withData(text);
 	}
